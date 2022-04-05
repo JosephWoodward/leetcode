@@ -1,21 +1,21 @@
 func lengthOfLastWord(s string) int {
-    	l := len(s)
+	pos := len(s) - 1
 
 	var result string
-	var char string
-	for i := l - 1; i >= 0; i-- {
-		char = string(s[i])
-		if char == " " {
+	var char rune
+	for ; pos >= 0; pos-- {
+		char = rune(s[pos])
+		if unicode.IsSpace(char) {
 			if result != "" {
 				return len(result)
 			}
 			continue
-		}
-		if char != " " {
-			result += char
+		} else {
+			result += string(char)
 		}
 	}
 
 	return len(result)
+
 
 }
